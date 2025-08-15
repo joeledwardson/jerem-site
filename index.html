@@ -33,15 +33,60 @@
         
         img {
             display: block;
-            max-width: 100%;
-            height: auto;
+            width: 400px;
+            height: 400px;
+            object-fit: contain;
+        }
+        
+        @keyframes bulge {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .randomize-btn {
+            background: linear-gradient(45deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #9400d3);
+            background-size: 400% 400%;
+            animation: ease infinite, bulge 2s ease-in-out infinite;
+            color: white;
+            padding: 16px 32px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .randomize-btn:hover {
+            animation: rainbow 1s ease infinite, bulge 0.5s ease-in-out infinite;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px);
+        }
+        
+        .randomize-btn:active {
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
     <h1>Welcome to Jerem's site</h1>
+    <button class="randomize-btn" onclick="randomizeImage()">Random Image</button>
     <div class="gif-container">
-        <img src="jerem.gif" alt="Jerem">
+        <img src="imgs/jerem.gif" alt="Jerem" id="jerem-image">
     </div>
+    
+    <script>
+        const images = ['jerem.gif', 'jerem-builder_1.png', 'jerem-thor.png'];
+        
+        function randomizeImage() {
+            const randomIndex = Math.floor(Math.random() * images.length);
+            const img = document.getElementById('jerem-image');
+            img.src = 'imgs/' + images[randomIndex];
+        }
+    </script>
 </body>
 </html>
